@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.controller.TransaksiController"
+            padding="15">
+
+    <center>
+        <TableView>
+            <columns>
+                <TableColumn text="ID Transaksi"/>
+                <TableColumn text="Reservasi"/>
+                <TableColumn text="Total Bayar"/>
+                <TableColumn text="Metode"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <GridPane hgap="10" vgap="10">
+                <Label text="ID Transaksi" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Reservasi" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ComboBox GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Total Bayar" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Metode Pembayaran" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <ComboBox GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <HBox spacing="10">
+                <Button text="Bayar"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

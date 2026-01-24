@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.controller.ReservasiController"
+            padding="15">
+
+    <center>
+        <TableView>
+            <columns>
+                <TableColumn text="ID Reservasi"/>
+                <TableColumn text="Pelanggan"/>
+                <TableColumn text="Kamar"/>
+                <TableColumn text="Check-in"/>
+                <TableColumn text="Check-out"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <GridPane hgap="10" vgap="10">
+                <Label text="ID Reservasi" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Pelanggan" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ComboBox GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Kamar" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <ComboBox GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Check-in" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <DatePicker GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Check-out" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <DatePicker GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <HBox spacing="10">
+                <Button text="Tambah"/>
+                <Button text="Batalkan"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
