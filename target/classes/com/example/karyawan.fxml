@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.controller.KaryawanController"
+            padding="15">
+
+    <center>
+        <TableView>
+            <columns>
+                <TableColumn text="ID"/>
+                <TableColumn text="Nama"/>
+                <TableColumn text="No HP"/>
+                <TableColumn text="Alamat"/>
+                <TableColumn text="Jabatan"/>
+                <TableColumn text="Shift"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <GridPane hgap="10" vgap="10">
+                <Label text="ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Nama" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="No HP" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Alamat" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Jabatan" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="Shift" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <HBox spacing="10">
+                <Button text="Tambah"/>
+                <Button text="Ubah"/>
+                <Button text="Hapus"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

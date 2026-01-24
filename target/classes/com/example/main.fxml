@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<TabPane xmlns:fx="http://javafx.com/fxml"
+         fx:controller="com.example.controller.MainController">
+
+    <tabs>
+        <Tab text="Kamar">
+            <content>
+                <fx:include source="kamar.fxml"/>
+            </content>
+        </Tab>
+
+        <Tab text="Pelanggan">
+            <content>
+                <fx:include source="pelanggan.fxml"/>
+            </content>
+        </Tab>
+
+        <Tab text="Karyawan">
+            <content>
+                <fx:include source="karyawan.fxml"/>
+            </content>
+        </Tab>
+
+        <Tab text="Reservasi">
+            <content>
+                <fx:include source="reservasi.fxml"/>
+            </content>
+        </Tab>
+
+        <Tab text="Transaksi">
+            <content>
+                <fx:include source="transaksi.fxml"/>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
