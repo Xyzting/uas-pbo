@@ -1,47 +1,230 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/17"
             fx:controller="com.example.controller.ReservasiController"
-            padding="15">
+            prefHeight="700.0"
+            prefWidth="1000.0">
 
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <!-- Tabel Reservasi -->
     <center>
-        <TableView>
+        <TableView fx:id="reservasiTableView" 
+                   BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn text="ID Reservasi"/>
-                <TableColumn text="Pelanggan"/>
-                <TableColumn text="Kamar"/>
-                <TableColumn text="Check-in"/>
-                <TableColumn text="Check-out"/>
+                <TableColumn fx:id="idReservasiColumn" 
+                            text="ID Reservasi" 
+                            prefWidth="120.0"
+                            minWidth="100.0"/>
+                <TableColumn fx:id="pelangganColumn" 
+                            text="Pelanggan" 
+                            prefWidth="200.0"
+                            minWidth="150.0"/>
+                <TableColumn fx:id="kamarColumn" 
+                            text="Kamar" 
+                            prefWidth="150.0"
+                            minWidth="100.0"/>
+                <TableColumn fx:id="checkInColumn" 
+                            text="Check-in" 
+                            prefWidth="130.0"
+                            minWidth="100.0"/>
+                <TableColumn fx:id="checkOutColumn" 
+                            text="Check-out" 
+                            prefWidth="130.0"
+                            minWidth="100.0"/>
+                <TableColumn fx:id="durasiColumn" 
+                            text="Durasi (Hari)" 
+                            prefWidth="110.0"
+                            minWidth="90.0"/>
+                <TableColumn fx:id="statusColumn" 
+                            text="Status" 
+                            prefWidth="120.0"
+                            minWidth="100.0"/>
             </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
         </TableView>
     </center>
 
+    <!-- Form Input dan Tombol Aksi -->
     <bottom>
-        <VBox spacing="10">
-            <GridPane hgap="10" vgap="10">
-                <Label text="ID Reservasi" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <VBox spacing="15" 
+              BorderPane.alignment="CENTER">
+            
+            <padding>
+                <Insets top="15" right="0" bottom="0" left="0"/>
+            </padding>
+            
+            <Separator/>
+            
+            <!-- Form Input -->
+            <GridPane hgap="10" vgap="12" 
+                     alignment="CENTER_LEFT">
+                
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" 
+                                      minWidth="120.0" 
+                                      prefWidth="120.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" 
+                                      minWidth="250.0" 
+                                      prefWidth="350.0"/>
+                    <ColumnConstraints hgrow="NEVER" 
+                                      minWidth="120.0" 
+                                      prefWidth="120.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" 
+                                      minWidth="250.0" 
+                                      prefWidth="350.0"/>
+                </columnConstraints>
+                
+                <!-- Baris 1: ID Reservasi & Pelanggan -->
+                <Label text="ID Reservasi:" 
+                       GridPane.rowIndex="0" 
+                       GridPane.columnIndex="0"/>
+                <TextField fx:id="idReservasiField" 
+                          promptText="ID akan terisi otomatis"
+                          editable="false"
+                          GridPane.rowIndex="0" 
+                          GridPane.columnIndex="1"/>
+                
+                <Label text="Pelanggan:" 
+                       GridPane.rowIndex="0" 
+                       GridPane.columnIndex="2"/>
+                <ComboBox fx:id="pelangganComboBox" 
+                         promptText="Pilih Pelanggan"
+                         prefWidth="350.0"
+                         GridPane.rowIndex="0" 
+                         GridPane.columnIndex="3">
+                    <tooltip>
+                        <Tooltip text="Pilih pelanggan dari daftar yang ada"/>
+                    </tooltip>
+                </ComboBox>
 
-                <Label text="Pelanggan" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <ComboBox GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <!-- Baris 2: Kamar & Status -->
+                <Label text="Kamar:" 
+                       GridPane.rowIndex="1" 
+                       GridPane.columnIndex="0"/>
+                <HBox spacing="10" 
+                      GridPane.rowIndex="1" 
+                      GridPane.columnIndex="1">
+                    <ComboBox fx:id="kamarComboBox" 
+                             promptText="Pilih Kamar Tersedia"
+                             prefWidth="250.0">
+                        <tooltip>
+                            <Tooltip text="Hanya menampilkan kamar yang tersedia"/>
+                        </tooltip>
+                    </ComboBox>
+                    <Button fx:id="refreshKamarButton" 
+                           text="⟳" 
+                           prefWidth="40.0">
+                        <tooltip>
+                            <Tooltip text="Refresh daftar kamar"/>
+                        </tooltip>
+                    </Button>
+                </HBox>
+                
+                <Label text="Status:" 
+                       GridPane.rowIndex="1" 
+                       GridPane.columnIndex="2"/>
+                <ComboBox fx:id="statusComboBox" 
+                        promptText="Pilih Status"
+                        prefWidth="200.0"
+                        GridPane.rowIndex="3" 
+                        GridPane.columnIndex="1"/>
 
-                <Label text="Kamar" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <ComboBox GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <!-- Baris 3: Check-in & Check-out -->
+                <Label text="Check-in:" 
+                       GridPane.rowIndex="2" 
+                       GridPane.columnIndex="0"/>
+                <DatePicker fx:id="checkInDatePicker" 
+                           promptText="Pilih tanggal check-in"
+                           prefWidth="350.0"
+                           GridPane.rowIndex="2" 
+                           GridPane.columnIndex="1">
+                    <tooltip>
+                        <Tooltip text="Pilih tanggal check-in"/>
+                    </tooltip>
+                </DatePicker>
+                
+                <Label text="Check-out:" 
+                       GridPane.rowIndex="2" 
+                       GridPane.columnIndex="2"/>
+                <DatePicker fx:id="checkOutDatePicker" 
+                           promptText="Pilih tanggal check-out"
+                           prefWidth="350.0"
+                           GridPane.rowIndex="2" 
+                           GridPane.columnIndex="3">
+                    <tooltip>
+                        <Tooltip text="Pilih tanggal check-out"/>
+                    </tooltip>
+                </DatePicker>
 
-                <Label text="Check-in" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <DatePicker GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-
-                <Label text="Check-out" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                <DatePicker GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <!-- Baris 4: Info Durasi & Total Harga -->
+                <Label text="Durasi:" 
+                       GridPane.rowIndex="3" 
+                       GridPane.columnIndex="0"/>
+                <Label fx:id="durasiLabel" 
+                       text="- hari"
+                       style="-fx-font-weight: bold;"
+                       GridPane.rowIndex="3" 
+                       GridPane.columnIndex="1"/>
+                
+                <Label text="Total Harga:" 
+                       GridPane.rowIndex="3" 
+                       GridPane.columnIndex="2"/>
+                <Label fx:id="totalHargaLabel" 
+                       text="Rp 0"
+                       style="-fx-font-weight: bold; -fx-text-fill: #2563eb;"
+                       GridPane.rowIndex="3" 
+                       GridPane.columnIndex="3"/>
+                
             </GridPane>
 
-            <HBox spacing="10">
-                <Button text="Tambah"/>
-                <Button text="Batalkan"/>
+            <!-- Tombol Aksi -->
+            <HBox spacing="10" 
+                  alignment="CENTER_LEFT">
+                
+                <Button fx:id="tambahButton" 
+                       text="Tambah Reservasi" 
+                       prefWidth="140.0"
+                       styleClass="button-primary"/>
+                       
+                <Button fx:id="ubahButton" 
+                       text="Ubah" 
+                       prefWidth="100.0"
+                       styleClass="button-secondary"/>
+                       
+                <Button fx:id="batalkanButton" 
+                       text="Batalkan" 
+                       prefWidth="100.0"
+                       styleClass="button-danger"/>
+                       
+                <Button fx:id="resetButton" 
+                       text="Reset" 
+                       prefWidth="100.0"/>
+                       
+                <Region HBox.hgrow="ALWAYS"/>
+                
+                <Button fx:id="checkInButton" 
+                       text="Check-in" 
+                       prefWidth="100.0"
+                       styleClass="button-success"/>
+                       
+                <Button fx:id="checkOutButton" 
+                       text="Check-out" 
+                       prefWidth="100.0"
+                       styleClass="button-success"/>
+                       
             </HBox>
+            
         </VBox>
     </bottom>
+
 </BorderPane>

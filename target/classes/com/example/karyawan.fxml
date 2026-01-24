@@ -1,52 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/17"
             fx:controller="com.example.controller.KaryawanController"
-            padding="15">
+            prefHeight="700.0"
+            prefWidth="900.0">
 
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <!-- Tabel Karyawan -->
     <center>
-        <TableView>
+        <TableView fx:id="karyawanTableView" 
+                   BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn text="ID"/>
-                <TableColumn text="Nama"/>
-                <TableColumn text="No HP"/>
-                <TableColumn text="Alamat"/>
-                <TableColumn text="Jabatan"/>
-                <TableColumn text="Shift"/>
+                <TableColumn fx:id="idColumn" 
+                            text="ID" 
+                            prefWidth="80.0"
+                            minWidth="60.0"/>
+                <TableColumn fx:id="namaColumn" 
+                            text="Nama" 
+                            prefWidth="180.0"
+                            minWidth="120.0"/>
+                <TableColumn fx:id="noHpColumn" 
+                            text="No HP" 
+                            prefWidth="130.0"
+                            minWidth="100.0"/>
+                <TableColumn fx:id="alamatColumn" 
+                            text="Alamat" 
+                            prefWidth="200.0"
+                            minWidth="150.0"/>
+                <TableColumn fx:id="jabatanColumn" 
+                            text="Jabatan" 
+                            prefWidth="130.0"
+                            minWidth="100.0"/>
+                <TableColumn fx:id="shiftColumn" 
+                            text="Shift" 
+                            prefWidth="100.0"
+                            minWidth="80.0"/>
             </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
         </TableView>
     </center>
 
+    <!-- Form Input dan Tombol Aksi -->
     <bottom>
-        <VBox spacing="10">
-            <GridPane hgap="10" vgap="10">
-                <Label text="ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <VBox spacing="15" 
+              BorderPane.alignment="CENTER">
+            
+            <padding>
+                <Insets top="15" right="0" bottom="0" left="0"/>
+            </padding>
+            
+            <Separator/>
+            
+            <!-- Form Input -->
+            <GridPane hgap="10" vgap="12" 
+                     alignment="CENTER_LEFT">
+                
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" 
+                                      minWidth="100.0" 
+                                      prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" 
+                                      minWidth="200.0" 
+                                      prefWidth="400.0"/>
+                </columnConstraints>
+                
+                <!-- ID Karyawan -->
+                <Label text="ID:" 
+                       GridPane.rowIndex="0" 
+                       GridPane.columnIndex="0"/>
+                <TextField fx:id="idField" 
+                          promptText="ID akan terisi otomatis"
+                          editable="false"
+                          GridPane.rowIndex="0" 
+                          GridPane.columnIndex="1"/>
 
-                <Label text="Nama" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <!-- Nama -->
+                <Label text="Nama:" 
+                       GridPane.rowIndex="1" 
+                       GridPane.columnIndex="0"/>
+                <TextField fx:id="namaField" 
+                          promptText="Masukkan nama lengkap karyawan"
+                          GridPane.rowIndex="1" 
+                          GridPane.columnIndex="1"/>
 
-                <Label text="No HP" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <!-- No HP -->
+                <Label text="No HP:" 
+                       GridPane.rowIndex="2" 
+                       GridPane.columnIndex="0"/>
+                <TextField fx:id="noHpField" 
+                          promptText="Contoh: 081234567890"
+                          GridPane.rowIndex="2" 
+                          GridPane.columnIndex="1"/>
 
-                <Label text="Alamat" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <TextField GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <!-- Alamat -->
+                <Label text="Alamat:" 
+                       GridPane.rowIndex="3" 
+                       GridPane.columnIndex="0"/>
+                <TextArea fx:id="alamatField" 
+                         promptText="Masukkan alamat lengkap"
+                         prefRowCount="3"
+                         wrapText="true"
+                         GridPane.rowIndex="3" 
+                         GridPane.columnIndex="1"/>
 
-                <Label text="Jabatan" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                <TextField GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <!-- Jabatan -->
+                <Label text="Jabatan:" 
+                       GridPane.rowIndex="4" 
+                       GridPane.columnIndex="0"/>
+                <ComboBox fx:id="jabatanComboBox" 
+                        promptText="Pilih Jabatan"
+                        prefWidth="200.0"
+                        GridPane.rowIndex="3" 
+                        GridPane.columnIndex="1"/>
 
-                <Label text="Shift" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-                <TextField GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                <!-- Shift -->
+                <Label text="Shift:" 
+                       GridPane.rowIndex="5" 
+                       GridPane.columnIndex="0"/>
+                <ComboBox fx:id="shiftComboBox" 
+                        promptText="Pilih Shift"
+                        prefWidth="200.0"
+                        GridPane.rowIndex="3" 
+                        GridPane.columnIndex="1"/>
+                
             </GridPane>
 
-            <HBox spacing="10">
-                <Button text="Tambah"/>
-                <Button text="Ubah"/>
-                <Button text="Hapus"/>
+            <!-- Tombol Aksi -->
+            <HBox spacing="10" 
+                  alignment="CENTER_LEFT">
+                
+                <Button fx:id="tambahButton" 
+                       text="Tambah" 
+                       prefWidth="100.0"
+                       styleClass="button-primary"/>
+                       
+                <Button fx:id="ubahButton" 
+                       text="Ubah" 
+                       prefWidth="100.0"
+                       styleClass="button-secondary"/>
+                       
+                <Button fx:id="hapusButton" 
+                       text="Hapus" 
+                       prefWidth="100.0"
+                       styleClass="button-danger"/>
+                       
+                <Button fx:id="resetButton" 
+                       text="Reset" 
+                       prefWidth="100.0"/>
+                       
             </HBox>
+            
         </VBox>
     </bottom>
+
 </BorderPane>
