@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1"
@@ -12,30 +10,6 @@
       prefWidth="800.0"
       spacing="0">
     
-    <TabPane fx:id="mainTabPane"
-             tabClosingPolicy="UNAVAILABLE"
-             VBox.vgrow="ALWAYS">
-        
-        <Tab fx:id="kamarTab" text="Kamar" closable="false">
-            <fx:include source="kamar.fxml"/>
-        </Tab>
-        
-        <Tab fx:id="pelangganTab" text="Pelanggan" closable="false">
-            <fx:include source="pelanggan.fxml"/>
-        </Tab>
-        
-        <Tab fx:id="karyawanTab" text="Karyawan" closable="false">
-            <fx:include source="karyawan.fxml"/>
-        </Tab>
-        
-        <Tab fx:id="reservasiTab" text="Reservasi" closable="false">
-            <fx:include source="reservasi.fxml"/>
-        </Tab>
-        
-        <Tab fx:id="transaksiTab" text="Transaksi" closable="false">
-            <fx:include source="transaksi.fxml"/>
-        </Tab>
-        
-    </TabPane>
+    <fx:include source="login.fxml"/>
     
 </VBox>

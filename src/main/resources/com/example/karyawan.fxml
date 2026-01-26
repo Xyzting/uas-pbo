@@ -120,7 +120,7 @@
                 <ComboBox fx:id="jabatanComboBox" 
                         promptText="Pilih Jabatan"
                         prefWidth="200.0"
-                        GridPane.rowIndex="3" 
+                        GridPane.rowIndex="4" 
                         GridPane.columnIndex="1"/>
 
                 <!-- Shift -->
@@ -130,7 +130,7 @@
                 <ComboBox fx:id="shiftComboBox" 
                         promptText="Pilih Shift"
                         prefWidth="200.0"
-                        GridPane.rowIndex="3" 
+                        GridPane.rowIndex="5" 
                         GridPane.columnIndex="1"/>
                 
             </GridPane>
