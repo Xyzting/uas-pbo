@@ -3,142 +3,132 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml/1"
            xmlns="http://javafx.com/javafx/17"
            fx:controller="com.example.controller.LoginController"
-           prefHeight="600.0"
-           prefWidth="900.0"
-           style="-fx-background-color: #f3f4f6;">
+           style="-fx-background-color: #f8f9fa;"
+           alignment="CENTER">
 
     <!-- Container Utama -->
-    <HBox spacing="0" 
-          alignment="CENTER"
-          style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);"
-          maxWidth="800.0"
-          maxHeight="500.0">
+    <VBox spacing="40" alignment="CENTER" maxWidth="1000">
         
-        <!-- Panel Kiri: Informasi/Banner -->
-        <VBox alignment="CENTER" 
-              spacing="20"
-              prefWidth="300.0"
-              style="-fx-background-color: linear-gradient(to bottom, #2563eb, #1d4ed8); -fx-background-radius: 10 0 0 10;">
+        <padding>
+            <Insets top="50" right="50" bottom="50" left="50"/>
+        </padding>
+        
+        <!-- Banner Header -->
+        <VBox alignment="CENTER" spacing="10">
             
-            <padding>
-                <Insets top="50" right="40" bottom="50" left="40"/>
-            </padding>
-            
+            <!-- Icon Hotel -->
             <Label text="🏨" 
-                   style="-fx-font-size: 64px;"/>
+                   style="-fx-font-size: 72px;"/>
             
+            <!-- Title -->
             <Label text="Sistem Reservasi Hotel" 
-                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"
-                   wrapText="true"
-                   textAlignment="CENTER"/>
+                   style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+                <font>
+                    <Font name="System Bold" size="36"/>
+                </font>
+            </Label>
             
+            <!-- Subtitle -->
             <Label text="Kelola hotel Anda dengan mudah dan efisien" 
-                   style="-fx-text-fill: #e0e7ff; -fx-font-size: 14px;"
-                   wrapText="true"
-                   textAlignment="CENTER"/>
-            
-            
+                   style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d;"/>
             
         </VBox>
         
-        <!-- Panel Kanan: Form Login -->
-        <VBox alignment="CENTER" 
-              spacing="25"
-              prefWidth="400.0">
+        <!-- Container untuk 2 Card -->
+        <HBox spacing="30" 
+              alignment="CENTER">
             
-            <padding>
-                <Insets top="50" right="50" bottom="50" left="50"/>
-            </padding>
-            
-            <!-- Header -->
-            <VBox spacing="5" alignment="CENTER">
-                <Label text="Selamat Datang!" 
-                       style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1f2937;"/>
-                <Label text="Masuk ke akun Anda" 
-                       style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
-            </VBox>
-            
-            <!-- Form Fields -->
-            <VBox spacing="20" prefWidth="300.0">
+            <!-- Card Login User -->
+            <VBox alignment="CENTER" 
+                  spacing="20"
+                  prefWidth="350"
+                  prefHeight="300"
+                  style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 5);">
                 
-                <!-- Username Field -->
-                <VBox spacing="8">
-                    <Label text="Username" 
-                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
-                    <TextField fx:id="usernameField" 
-                              promptText="Masukkan username"
-                              style="-fx-font-size: 14px; -fx-padding: 12; -fx-border-color: #d1d5db; -fx-border-radius: 5; -fx-background-radius: 5;"/>
-                </VBox>
+                <padding>
+                    <Insets top="40" right="30" bottom="40" left="30"/>
+                </padding>
                 
-                <!-- Password Field -->
-                <VBox spacing="8">
-                    <HBox alignment="CENTER_LEFT">
-                        <Label text="Password" 
-                               style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #374151;"
-                               HBox.hgrow="ALWAYS"/>
-                        <Hyperlink fx:id="forgotPasswordLink" 
-                                  text="Lupa Password?" 
-                                  style="-fx-font-size: 12px; -fx-text-fill: #2563eb;"/>
-                    </HBox>
-                    <PasswordField fx:id="passwordField" 
-                                  promptText="Masukkan password"
-                                  style="-fx-font-size: 14px; -fx-padding: 12; -fx-border-color: #d1d5db; -fx-border-radius: 5; -fx-background-radius: 5;"/>
-                </VBox>
+                <!-- Icon Placeholder -->
+                <Label text="👤" 
+                       style="-fx-font-size: 80px;"/>
                 
-                <!-- Remember Me -->
-                <HBox spacing="8" alignment="CENTER_LEFT">
-                    <CheckBox fx:id="rememberMeCheckBox" 
-                             text="Ingat saya"
-                             style="-fx-font-size: 13px; -fx-text-fill: #4b5563;"/>
-                </HBox>
+                <!-- Title -->
+                <Label text="Login User" 
+                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
                 
-                <!-- Error Message -->
-                <Label fx:id="errorLabel" 
-                       text="" 
-                       textFill="red"
+                <!-- Description -->
+                <Label text="Klik untuk masuk ke halaman user." 
+                       style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"
                        wrapText="true"
-                       style="-fx-font-size: 12px;"
-                       visible="false"
-                       managed="false"/>
+                       textAlignment="CENTER"
+                       maxWidth="280"/>
                 
-                <!-- Login Button -->
-                <Button fx:id="loginButton" 
-                       text="Masuk" 
-                       onAction="#handleLogin"
-                       prefWidth="300.0"
-                       prefHeight="45.0"
-                       style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;"/>
-                
-                <!-- Divider -->
-                <HBox spacing="10" alignment="CENTER">
-                    <Separator prefWidth="80.0"/>
-                    <Label text="atau" 
-                           style="-fx-text-fill: #9ca3af; -fx-font-size: 12px;"/>
-                    <Separator prefWidth="80.0"/>
-                </HBox>
-                
-                <!-- Register Link -->
-                <HBox spacing="5" alignment="CENTER">
-                    <Label text="Belum punya akun?" 
-                           style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
-                    <Hyperlink fx:id="registerLink" 
-                              text="Daftar sekarang" 
-                              style="-fx-font-size: 13px; -fx-text-fill: #2563eb; -fx-font-weight: bold;"/>
-                </HBox>
+                <!-- Button -->
+                <Button fx:id="loginUserButton"
+                        text="Masuk Sebagai User"
+                        onAction="#handleLoginUser"
+                        prefWidth="280"
+                        prefHeight="45"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;">
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+                </Button>
                 
             </VBox>
             
-            <!-- Footer -->
-            <Label text="© 2025 Hotel Management System by keompok rehan" 
-                   style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;"/>
+            <!-- Card Login Admin -->
+            <VBox alignment="CENTER" 
+                  spacing="20"
+                  prefWidth="350"
+                  prefHeight="300"
+                  style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 5);">
+                
+                <padding>
+                    <Insets top="40" right="30" bottom="40" left="30"/>
+                </padding>
+                
+                <!-- Icon Placeholder -->
+                <Label text="🔒" 
+                       style="-fx-font-size: 80px;"/>
+                
+                <!-- Title -->
+                <Label text="Login Admin" 
+                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                
+                <!-- Description -->
+                <Label text="Klik untuk masuk ke halaman login Admin." 
+                       style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"
+                       wrapText="true"
+                       textAlignment="CENTER"
+                       maxWidth="280"/>
+                
+                <!-- Button -->
+                <Button fx:id="loginAdminButton"
+                        text="Masuk Sebagai Admin"
+                        onAction="#handleLoginAdmin"
+                        prefWidth="280"
+                        prefHeight="45"
+                        style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;">
+                    <font>
+                        <Font name="System Bold" size="14"/>
+                    </font>
+                </Button>
+                
+            </VBox>
             
-        </VBox>
+        </HBox>
         
-    </HBox>
+        <!-- Footer -->
+        <Label text="© 2025 Hotel Management System by kelompok rehan" 
+               style="-fx-font-size: 12px; -fx-text-fill: #95a5a6;"/>
+        
+    </VBox>
 
 </StackPane>
