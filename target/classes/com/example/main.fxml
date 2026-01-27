@@ -6,10 +6,8 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1"
       xmlns="http://javafx.com/javafx/17"
       fx:controller="com.example.controller.MainController"
-      prefHeight="600.0"
-      prefWidth="800.0"
       spacing="0">
     
-    <fx:include source="FormLogin.fxml"/>
+    <fx:include source="Login.fxml"/>
     
 </VBox>

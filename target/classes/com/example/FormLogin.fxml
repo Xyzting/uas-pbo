@@ -7,8 +7,7 @@
 
 <StackPane xmlns:fx="http://javafx.com/fxml/1"
            xmlns="http://javafx.com/javafx/17"
-           fx:controller="com.example.controller.FormLoginController"
-           style="-fx-background-color: #f3f4f6;">
+           fx:controller="com.example.controller.FormLoginController">
 
     <!-- Container Utama - Responsif -->
     <HBox spacing="0" 
@@ -22,9 +21,6 @@
         <!-- Panel Kiri: Informasi/Banner -->
         <VBox alignment="CENTER" 
               spacing="20"
-              minWidth="250.0"
-              prefWidth="350.0"
-              maxWidth="400.0"
               style="-fx-background-color: linear-gradient(to bottom, #2563eb, #1d4ed8); -fx-background-radius: 10 0 0 10;"
               HBox.hgrow="SOMETIMES">
             
@@ -52,9 +48,6 @@
         <!-- Panel Kanan: Form Login -->
         <VBox alignment="CENTER" 
               spacing="20"
-              minWidth="300.0"
-              prefWidth="450.0"
-              maxWidth="500.0"
               HBox.hgrow="SOMETIMES">
             
             <padding>
@@ -71,9 +64,6 @@
             
             <!-- Form Fields -->
             <VBox spacing="18" 
-                  minWidth="250"
-                  prefWidth="320.0"
-                  maxWidth="350.0"
                   VBox.vgrow="SOMETIMES">
                 
                 <!-- Username Field -->
