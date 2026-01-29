@@ -8,15 +8,22 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1"
       xmlns="http://javafx.com/javafx/17"
       fx:controller="com.example.controller.KasirViewController"
-      spacing="0">
+      spacing="0"
+      style="-fx-background-color: linear-gradient(to bottom right, #2c3e50, #4a6572);">
     
-     <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-        <Tab text="Reservasi">
+     <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 4);">
+        
+        <Tab text="Reservasi" 
+             style="-fx-background-color: transparent;">
             <fx:include source="reservasi.fxml" />
         </Tab>
-        <Tab text="Trasaksi">
+        
+        <Tab text="Transaksi" 
+             style="-fx-background-color: transparent;">
             <fx:include source="transaksi.fxml" />
         </Tab>
+        
     </TabPane>
     
 </VBox>
