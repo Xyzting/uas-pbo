@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/17"
+      fx:controller="com.example.controller.AdminViewController">
+    
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <Tab text="Karyawan">
+            <fx:include source="karyawan.fxml" />
+        </Tab>
+        <Tab text="Transaksi">
+            <fx:include source="transaksi.fxml" />
+        </Tab>
+        <Tab text="Pelanggan">
+            <fx:include source="pelanggan.fxml" />
+        </Tab>
+        <Tab text="Kamar">
+            <fx:include source="kamar.fxml" />
+        </Tab>
+    </TabPane>
+    
+</VBox>

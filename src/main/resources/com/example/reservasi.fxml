@@ -136,8 +136,8 @@
                 <ComboBox fx:id="statusComboBox" 
                         promptText="Pilih Status"
                         prefWidth="200.0"
-                        GridPane.rowIndex="3" 
-                        GridPane.columnIndex="1"/>
+                        GridPane.rowIndex="1" 
+                        GridPane.columnIndex="3"/>
 
                 <!-- Baris 3: Check-in & Check-out -->
                 <Label text="Check-in:" 
