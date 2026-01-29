@@ -93,7 +93,7 @@
             <Label text="Diskon:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
             <HBox spacing="5" GridPane.rowIndex="3" GridPane.columnIndex="1">
               <TextField fx:id="diskonField" text="0" onKeyReleased="#handleDiskonChange" />
-              <Label text="%" />
+              <Label text="\%" />
               <Label fx:id="diskonRpLabel" text="(Rp 0)" />
             </HBox>
 
@@ -113,9 +113,9 @@
 
       <!-- BUTTONS -->
       <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button fx:id="bayarButton" text="Bayar Sekarang" />
-        <Button fx:id="cetakButton" text="Cetak Struk" />
-        <Button fx:id="resetButton" text="Reset" />
+        <Button fx:id="bayarButton" text="Bayar Sekarang" styleClass="btn-primary" />
+        <Button fx:id="cetakButton" text="Cetak Struk" styleClass="btn-outline" />
+        <Button fx:id="resetButton" text="Reset" styleClass="btn-danger" />
 
         <Region HBox.hgrow="ALWAYS" />
 

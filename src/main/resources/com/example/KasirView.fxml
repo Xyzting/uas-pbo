@@ -4,23 +4,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import java.net.URL?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1"
-  xmlns="http://javafx.com/javafx/17"
-  fx:controller="com.example.controller.KasirViewController"
-  spacing="0"
-  style="-fx-background-color: #f3f4f6;">
+      xmlns="http://javafx.com/javafx/17"
+      fx:controller="com.example.controller.KasirViewController"
+      styleClass="root"> <stylesheets>
+        <URL value="@app.css" />
+    </stylesheets>
 
-  <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
-    <Tab text="Reservasi">
-      <fx:include source="reservasi.fxml" />
-    </Tab>
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="tab-pane">
+        <tabs>
+            <Tab text="RESERVASI">
+                <fx:include source="reservasi.fxml" />
+            </Tab>
 
-    <Tab text="Transaksi">
-      <fx:include source="transaksi.fxml" />
-    </Tab>
-
-  </TabPane>
+            <Tab text="TRANSAKSI">
+                <fx:include source="transaksi.fxml" />
+            </Tab>
+        </tabs>
+    </TabPane>
 
 </VBox>

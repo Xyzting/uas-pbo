@@ -1,78 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1"
-      xmlns="http://javafx.com/javafx/17"
+<VBox xmlns:fx="http://javafx.com/fxml/1" 
+      xmlns="http://javafx.com/javafx/17" 
       fx:controller="com.example.controller.AdminViewController"
-      style="-fx-background-color: linear-gradient(to bottom right, #2c3e50, #4a6572);">
-    
-    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS"
-             style="-fx-background-color: white; -fx-background-radius: 10 10 0 0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 4);">
-        
-        <Tab text="Karyawan" 
-             style="-fx-background-color: #ecf0f1;">
-            <styleClass>
-                <String fx:value="custom-tab" />
-            </styleClass>
-            <fx:include source="karyawan.fxml" />
-        </Tab>
-        
-        <Tab text="Pelanggan"
-             style="-fx-background-color: #ecf0f1;">
-            <styleClass>
-                <String fx:value="custom-tab" />
-            </styleClass>
-            <fx:include source="pelanggan.fxml" />
-        </Tab>
-        
-        <Tab text="Kamar"
-             style="-fx-background-color: #ecf0f1;">
-            <styleClass>
-                <String fx:value="custom-tab" />
-            </styleClass>
-            <fx:include source="kamar.fxml" />
-        </Tab>
-        
-        <style>
-            /* Styling untuk Tab Header */
-            .tab-header-background {
-                -fx-background-color: #2c3e50;
-                -fx-background-radius: 10 10 0 0;
-            }
+      styleClass="root"> <stylesheets>
+        <URL value="@app.css" />
+    </stylesheets>
+
+    <padding>
+        <javafx.geometry.Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="tab-pane">
+        <tabs>
+            <Tab text="Karyawan">
+                <fx:include source="karyawan.fxml" />
+            </Tab>
             
-            .tab {
-                -fx-background-color: #ecf0f1;
-                -fx-background-radius: 5 5 0 0;
-                -fx-padding: 5 15;
-                -fx-border-color: transparent;
-                -fx-font-family: 'Segoe UI';
-                -fx-font-size: 14px;
-            }
+            <Tab text="Pelanggan">
+                <fx:include source="pelanggan.fxml" />
+            </Tab>
             
-            .tab:selected {
-                -fx-background-color: white;
-                -fx-font-weight: bold;
-                -fx-text-fill: #2c3e50;
-            }
-            
-            .tab:selected .tab-label {
-                -fx-text-fill: #2c3e50;
-            }
-            
-            .tab .tab-label {
-                -fx-text-fill: #7f8c8d;
-                -fx-font-family: 'Segoe UI';
-                -fx-font-size: 14px;
-            }
-            
-            .tab:hover {
-                -fx-background-color: #d5dbdb;
-            }
-        </style>
+            <Tab text="Kamar">
+                <fx:include source="kamar.fxml" />
+            </Tab>
+        </tabs>
     </TabPane>
     
 </VBox>
