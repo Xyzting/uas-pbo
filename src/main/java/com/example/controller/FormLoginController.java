@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -22,9 +21,6 @@ public class FormLoginController {
     private PasswordField passwordField;
     
     @FXML
-    private CheckBox rememberMeCheckBox;
-    
-    @FXML
     private Label errorLabel;
     
     @FXML
@@ -33,8 +29,6 @@ public class FormLoginController {
     @FXML
     private Hyperlink forgotPasswordLink;
     
-    @FXML
-    private Hyperlink registerLink;
     
     @FXML
     public void initialize() {
@@ -43,7 +37,6 @@ public class FormLoginController {
         
         // Setup hyperlink actions
         forgotPasswordLink.setOnAction(e -> handleForgotPassword());
-        registerLink.setOnAction(e -> handleRegister());
         
         System.out.println("LoginController initialized");
     }
@@ -106,14 +99,7 @@ public class FormLoginController {
         alert.showAndWait();
     }
     
-    private void handleRegister() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Registrasi");
-        alert.setHeaderText("Registrasi Akun Baru");
-        alert.setContentText("Silakan hubungi administrator untuk membuat akun baru.");
-        alert.showAndWait();
-    }
-    
+
     private void showError(String message) {
         errorLabel.setText(message);
         errorLabel.setVisible(true);
