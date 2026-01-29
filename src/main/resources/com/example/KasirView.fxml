@@ -12,17 +12,60 @@
       style="-fx-background-color: linear-gradient(to bottom right, #2c3e50, #4a6572);">
     
      <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS"
-              style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 4);">
+              style="-fx-background-color: white; -fx-background-radius: 10 10 0 0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 4);">
         
         <Tab text="Reservasi" 
-             style="-fx-background-color: transparent;">
+             style="-fx-background-color: #ecf0f1;">
+            <styleClass>
+                <String fx:value="custom-tab" />
+            </styleClass>
             <fx:include source="reservasi.fxml" />
         </Tab>
         
         <Tab text="Transaksi" 
-             style="-fx-background-color: transparent;">
+             style="-fx-background-color: #ecf0f1;">
+            <styleClass>
+                <String fx:value="custom-tab" />
+            </styleClass>
             <fx:include source="transaksi.fxml" />
         </Tab>
+        
+        <style>
+            /* Styling untuk Tab Header */
+            .tab-header-background {
+                -fx-background-color: #2c3e50;
+                -fx-background-radius: 10 10 0 0;
+            }
+            
+            .tab {
+                -fx-background-color: #ecf0f1;
+                -fx-background-radius: 5 5 0 0;
+                -fx-padding: 5 15;
+                -fx-border-color: transparent;
+                -fx-font-family: 'Segoe UI';
+                -fx-font-size: 14px;
+            }
+            
+            .tab:selected {
+                -fx-background-color: white;
+                -fx-font-weight: bold;
+                -fx-text-fill: #2c3e50;
+            }
+            
+            .tab:selected .tab-label {
+                -fx-text-fill: #2c3e50;
+            }
+            
+            .tab .tab-label {
+                -fx-text-fill: #7f8c8d;
+                -fx-font-family: 'Segoe UI';
+                -fx-font-size: 14px;
+            }
+            
+            .tab:hover {
+                -fx-background-color: #d5dbdb;
+            }
+        </style>
         
     </TabPane>
     
