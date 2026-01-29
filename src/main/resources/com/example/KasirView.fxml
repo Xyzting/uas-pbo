@@ -2,12 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1"
       xmlns="http://javafx.com/javafx/17"
       fx:controller="com.example.controller.KasirViewController"
       spacing="0">
     
-    <fx:include source="reservasi.fxml"/>
+     <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <Tab text="Reservasi">
+            <fx:include source="reservasi.fxml" />
+        </Tab>
+        <Tab text="Trasaksi">
+            <fx:include source="transaksi.fxml" />
+        </Tab>
+    </TabPane>
     
 </VBox>

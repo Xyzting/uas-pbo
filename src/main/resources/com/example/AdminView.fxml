@@ -12,9 +12,6 @@
         <Tab text="Karyawan">
             <fx:include source="karyawan.fxml" />
         </Tab>
-        <Tab text="Transaksi">
-            <fx:include source="transaksi.fxml" />
-        </Tab>
         <Tab text="Pelanggan">
             <fx:include source="pelanggan.fxml" />
         </Tab>

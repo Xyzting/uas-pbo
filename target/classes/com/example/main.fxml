@@ -8,6 +8,6 @@
       fx:controller="com.example.controller.MainController"
       spacing="0">
     
-    <fx:include source="Login.fxml"/>
+    <fx:include source="KasirView.fxml"/>
     
 </VBox>
