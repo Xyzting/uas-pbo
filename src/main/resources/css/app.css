@@ -1,0 +1,152 @@
+/* ================= ROOT ================= */
+.root {
+  -fx-font-family: "Segoe UI", "Inter", sans-serif;
+  -fx-background-color: #f3f4f6;
+}
+
+/* ================= TABPANE ================= */
+.tab-pane {
+  -fx-background-color: transparent;
+  -fx-background-radius: 15;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 20, 0, 0, 8);
+}
+
+/* TAB HEADER AREA */
+.tab-pane .tab-header-area {
+  -fx-padding: 10;
+  -fx-background-color: white;
+  -fx-background-radius: 15 15 0 0;
+}
+
+/* TAB HEADER BG */
+.tab-pane .tab-header-background {
+  -fx-background-color: white;
+  -fx-background-radius: 15 15 0 0;
+}
+
+/* TAB STYLE */
+.tab {
+  -fx-background-color: transparent;
+  -fx-padding: 8 20;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #6b7280;
+}
+
+/* TAB SELECTED */
+.tab:selected {
+  -fx-background-color: #2563eb;
+  -fx-background-radius: 8;
+}
+
+.tab:selected .tab-label {
+  -fx-text-fill: white;
+}
+
+/* TAB CONTENT */
+.tab-content-area {
+  -fx-background-color: white;
+  -fx-background-radius: 0 0 15 15;
+  -fx-padding: 15;
+}
+
+/* ================= CARD ================= */
+.card {
+  -fx-background-color: white;
+  -fx-background-radius: 15;
+  -fx-padding: 15;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 20, 0, 0, 8);
+}
+
+/* ================= TABLE ================= */
+.table-view {
+  -fx-background-color: white;
+  -fx-border-color: #e5e7eb;
+  -fx-border-radius: 10;
+  -fx-background-radius: 10;
+}
+
+/* TABLE HEADER */
+.table-view .column-header-background {
+  -fx-background-color: linear-gradient(to right, #2563eb, #1d4ed8);
+  -fx-background-radius: 10 10 0 0;
+  -fx-padding: 4px;
+}
+
+.table-view .column-header {
+  -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-font-size: 13px;
+}
+
+/* HEADER FILLER */
+.table-view .filler {
+  -fx-background-color: transparent;
+}
+
+/* ================= INPUT ================= */
+.text-field,
+.combo-box,
+.date-picker {
+  -fx-background-color: #f9fafb;
+  -fx-border-color: #d1d5db;
+  -fx-border-radius: 8;
+  -fx-background-radius: 8;
+  -fx-padding: 8;
+}
+
+/* ================= LABEL ================= */
+.label {
+  -fx-text-fill: #111827;
+  -fx-font-size: 14px;
+  -fx-font-weight: 600;
+}
+
+/* ================= BUTTONS ================= */
+.btn-primary {
+  -fx-background-color: #2563eb;
+  -fx-text-fill: white;
+  -fx-background-radius: 8;
+  -fx-font-weight: bold;
+}
+
+.btn-outline {
+  -fx-background-color: transparent;
+  -fx-text-fill: #2563eb;
+  -fx-border-color: #2563eb;
+  -fx-border-radius: 8;
+  -fx-border-width: 2;
+  -fx-font-weight: bold;
+}
+
+.btn-danger {
+  -fx-background-color: #dc2626;
+  -fx-text-fill: white;
+  -fx-background-radius: 8;
+  -fx-font-weight: bold;
+}
+
+.btn-success {
+  -fx-background-color: #16a34a;
+  -fx-text-fill: white;
+  -fx-background-radius: 8;
+  -fx-font-weight: bold;
+}
+
+.btn-muted {
+  -fx-background-color: #9ca3af;
+  -fx-text-fill: white;
+  -fx-background-radius: 8;
+  -fx-font-weight: bold;
+}
+
+/* ================= PRICE LABEL ================= */
+.price-label {
+  -fx-text-fill: #dc2626;
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+}
