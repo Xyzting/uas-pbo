@@ -31,5 +31,16 @@ public abstract class Person {
     }
 
     public abstract String getInfo();
-}
 
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setNoTelp(String noTelp) {
+        this.noTelp = noTelp;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+}
