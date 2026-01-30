@@ -6,66 +6,70 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/17"
-            fx:controller="com.example.controller.KamarController"
-            prefHeight="600.0"
-            prefWidth="800.0"
-            styleClass="root">
+  xmlns="http://javafx.com/javafx/17"
+  fx:controller="com.example.controller.KamarController"
+  prefHeight="600.0"
+  prefWidth="800.0"
+  styleClass="root">
 
-    <stylesheets>
-        <URL value="@app.css" />
-    </stylesheets>
+  <stylesheets>
+    <URL value="@app.css" />
+  </stylesheets>
 
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+  <padding>
+    <Insets top="20" right="20" bottom="20" left="20" />
+  </padding>
 
-    <center>
-        <TableView fx:id="kamarTableView" BorderPane.alignment="CENTER">
-            <columns>
-                <TableColumn fx:id="idKamarColumn" text="ID Kamar" prefWidth="150.0" />
-                <TableColumn fx:id="tipeColumn" text="Tipe" prefWidth="200.0" />
-                <TableColumn fx:id="hargaColumn" text="Harga" prefWidth="200.0" />
-                <TableColumn fx:id="statusColumn" text="Status" prefWidth="150.0" />
-            </columns>
-            <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-            </columnResizePolicy>
-        </TableView>
-    </center>
+  <center>
+    <TableView fx:id="kamarTableView" BorderPane.alignment="CENTER">
+      <columns>
+        <TableColumn fx:id="idKamarColumn" text="ID Kamar" prefWidth="150.0" />
+        <TableColumn fx:id="tipeColumn" text="Tipe" prefWidth="200.0" />
+        <TableColumn fx:id="hargaColumn" text="Harga" prefWidth="200.0" />
+        <TableColumn fx:id="statusColumn" text="Status" prefWidth="150.0" />
+      </columns>
+      <columnResizePolicy>
+        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
+    </TableView>
+  </center>
 
-    <bottom>
-        <VBox spacing="20" BorderPane.alignment="CENTER" styleClass="card">
-            <BorderPane.margin>
-                <Insets top="20" />
-            </BorderPane.margin>
-            
-            <GridPane hgap="15" vgap="15">
-                <columnConstraints>
-                    <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" />
-                </columnConstraints>
-                
-                <Label text="ID Kamar" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="idKamarField" promptText="Masukkan ID Kamar" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+  <bottom>
+    <VBox spacing="20" BorderPane.alignment="CENTER" styleClass="card">
+      <BorderPane.margin>
+        <Insets top="20" />
+      </BorderPane.margin>
 
-                <Label text="Tipe Kamar" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField fx:id="tipeField" promptText="Standard, Deluxe, atau Suite" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+      <GridPane hgap="15" vgap="15">
+        <columnConstraints>
+          <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" />
+        </columnConstraints>
 
-                <Label text="Harga (Rp)" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField fx:id="hargaField" promptText="Harga per malam" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Label text="ID Kamar" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <TextField fx:id="idKamarField" promptText="Masukkan ID Kamar" GridPane.rowIndex="0"
+          GridPane.columnIndex="1" />
 
-                <Label text="Status" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <ComboBox fx:id="statusComboBox" promptText="Pilih Status" prefWidth="200.0" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-            </GridPane>
+        <Label text="Tipe Kamar" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <ComboBox fx:id="tipeComboBox" promptText="Pilih Tipe Kamar" prefWidth="200.0"
+          GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Button fx:id="tambahButton" text="Tambah" styleClass="btn-primary" prefWidth="110"/>
-                <Button fx:id="ubahButton" text="Ubah" styleClass="btn-outline" prefWidth="110"/>
-                <Button fx:id="hapusButton" text="Hapus" styleClass="btn-danger" prefWidth="110"/>
-                <Button fx:id="resetButton" text="Reset" styleClass="btn-muted" prefWidth="110"/>
-            </HBox>
-        </VBox>
-    </bottom>
+        <Label text="Harga (Rp)" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <TextField fx:id="hargaField" promptText="Harga per malam" GridPane.rowIndex="2"
+          GridPane.columnIndex="1" />
+
+        <Label text="Status" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+        <ComboBox fx:id="statusComboBox" promptText="Pilih Status" prefWidth="200.0"
+          GridPane.rowIndex="3" GridPane.columnIndex="1" />
+      </GridPane>
+
+      <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button fx:id="tambahButton" text="Tambah" styleClass="btn-primary" prefWidth="110" />
+        <Button fx:id="ubahButton" text="Ubah" styleClass="btn-outline" prefWidth="110" />
+        <Button fx:id="hapusButton" text="Hapus" styleClass="btn-danger" prefWidth="110" />
+        <Button fx:id="resetButton" text="Reset" styleClass="btn-muted" prefWidth="110" />
+      </HBox>
+    </VBox>
+  </bottom>
 
 </BorderPane>

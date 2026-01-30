@@ -56,9 +56,14 @@
         <TextField fx:id="idReservasiField" editable="false" GridPane.rowIndex="0"
           GridPane.columnIndex="1" />
 
+        <!-- ROW 1 - Pelanggan Section -->
         <Label text="Pelanggan:" GridPane.rowIndex="0" GridPane.columnIndex="2" />
-        <ComboBox fx:id="pelangganComboBox" promptText="Pilih Pelanggan" GridPane.rowIndex="0"
-          GridPane.columnIndex="3" />
+        <HBox spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="3">
+          <ComboBox fx:id="pelangganComboBox" promptText="Pilih Pelanggan"
+            HBox.hgrow="ALWAYS" prefWidth="250" />
+          <Button fx:id="pelangganBaruButton" text="➕ Baru"
+            styleClass="btn-success" />
+        </HBox>
 
         <!-- ROW 2 -->
         <Label text="Kamar:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
