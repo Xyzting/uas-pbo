@@ -2,6 +2,8 @@ package com.example.utils;
 
 import java.util.Optional;
 
+import com.example.App;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -11,7 +13,7 @@ import javafx.scene.control.Dialog;
  */
 public class DialogUtil {
 
-    private static final String CSS_PATH = "/com/example/view/app.css";
+    private static final String CSS_PATH = "/css/app.css";
 
     /**
      * Apply stylesheet ke dialog
@@ -19,7 +21,7 @@ public class DialogUtil {
     public static void applyStyle(Dialog<?> dialog) {
         try {
             dialog.getDialogPane().getStylesheets().add(
-                    DialogUtil.class.getResource(CSS_PATH).toExternalForm()
+                    App.class.getResource(CSS_PATH).toExternalForm()
             );
         } catch (Exception e) {
             // CSS not found, ignore
@@ -33,7 +35,7 @@ public class DialogUtil {
     public static void applyStyle(Alert alert) {
         try {
             alert.getDialogPane().getStylesheets().add(
-                    DialogUtil.class.getResource(CSS_PATH).toExternalForm()
+                    App.class.getResource(CSS_PATH).toExternalForm()
             );
         } catch (Exception e) {
             System.err.println("Warning: CSS file not found at " + CSS_PATH);

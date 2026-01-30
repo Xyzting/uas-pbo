@@ -329,7 +329,7 @@ public class KamarController {
         // Apply CSS
         try {
             dialog.getDialogPane().getStylesheets().add(
-                    KamarController.class.getResource("/com/example/view/app.css").toExternalForm()
+                    App.class.getResource("/css/app.css").toExternalForm()
             );
         } catch (Exception e) {
             // ignore
