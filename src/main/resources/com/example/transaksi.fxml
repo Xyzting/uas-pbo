@@ -102,7 +102,7 @@
               GridPane.rowIndex="4" GridPane.columnIndex="1" />
 
             <Label text="Metode:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-            <ComboBox fx:id="metodeComboBox" promptText="Pilih Metode" pnarefWidth="150.0"
+            <ComboBox fx:id="metodeComboBox" promptText="Pilih Metode" prefWidth="150.0"
               GridPane.rowIndex="5" GridPane.columnIndex="1" />
           </GridPane>
         </VBox>
