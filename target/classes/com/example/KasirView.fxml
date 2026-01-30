@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1"
-      xmlns="http://javafx.com/javafx/17"
-      fx:controller="com.example.controller.KasirViewController"
-      styleClass="root"> <stylesheets>
-        <URL value="@app.css" />
-    </stylesheets>
+  xmlns="http://javafx.com/javafx/17"
+  fx:controller="com.example.controller.KasirViewController"
+  styleClass="root">
+  <stylesheets>
+    <URL value="@app.css" />
+  </stylesheets>
 
+  <padding>
+    <Insets top="20" right="20" bottom="20" left="20" />
+  </padding>
+
+  <HBox alignment="CENTER_RIGHT">
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+      <Insets top="0" right="10" bottom="10" left="0" />
     </padding>
+    <Button fx:id="logoutButton" text="Logout" onAction="#handleLogout" style="-fx-font-size: 15px;"
+      styleClass="btn-danger" />
+  </HBox>
 
-    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="tab-pane">
-        <tabs>
-            <Tab text="RESERVASI">
-                <fx:include source="reservasi.fxml" />
-            </Tab>
+  <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="tab-pane">
+    <tabs>
+      <Tab text="RESERVASI">
+        <fx:include source="reservasi.fxml" />
+      </Tab>
 
-            <Tab text="TRANSAKSI">
-                <fx:include source="transaksi.fxml" />
-            </Tab>
-        </tabs>
-    </TabPane>
+      <Tab text="TRANSAKSI">
+        <fx:include source="transaksi.fxml" />
+      </Tab>
+    </tabs>
+  </TabPane>
 
 </VBox>

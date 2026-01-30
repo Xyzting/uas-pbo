@@ -4,11 +4,10 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1"
-      xmlns="http://javafx.com/javafx/17"
-      fx:controller="com.example.controller.MainController"
-      spacing="0"
-      style="-fx-background-color: linear-gradient(to bottom right, #2c3e50, #4a6572);">
-    
-    <fx:include source="KasirView.fxml"/>
-    
+  xmlns="http://javafx.com/javafx/17"
+  spacing="0"
+  style="-fx-background-color: linear-gradient(to bottom right, #2c3e50, #4a6572);">
+
+  <fx:include source="login.fxml" />
+
 </VBox>

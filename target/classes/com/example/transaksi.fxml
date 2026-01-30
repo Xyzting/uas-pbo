@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -8,55 +9,54 @@
   xmlns="http://javafx.com/javafx/17"
   fx:controller="com.example.controller.TransaksiController"
   prefHeight="700.0"
-  prefWidth="1100.0">
+  prefWidth="1200.0"
+  styleClass="root">
+
+  <stylesheets>
+    <URL value="@app.css" />
+  </stylesheets>
 
   <padding>
-    <Insets top="15" right="15" bottom="15" left="15" />
+    <Insets top="20" right="20" bottom="20" left="20" />
   </padding>
 
-  <!-- ================= TABLE TRANSAKSI ================= -->
   <center>
     <TableView fx:id="transaksiTableView" BorderPane.alignment="CENTER">
       <columns>
-        <TableColumn fx:id="idTransaksiColumn" text="ID Transaksi" prefWidth="120" />
-        <TableColumn fx:id="reservasiColumn" text="Reservasi" prefWidth="150" />
-        <TableColumn fx:id="pelangganColumn" text="Pelanggan" prefWidth="180" />
-        <TableColumn fx:id="kamarColumn" text="Kamar" prefWidth="120" />
-        <TableColumn fx:id="totalBayarColumn" text="Total Bayar" prefWidth="150" />
-        <TableColumn fx:id="metodeColumn" text="Metode Pembayaran" prefWidth="180" />
-        <TableColumn fx:id="tanggalColumn" text="Tanggal" prefWidth="130" />
-        <TableColumn fx:id="statusColumn" text="Status" prefWidth="120" />
+        <TableColumn fx:id="idTransaksiColumn" text="ID Transaksi" prefWidth="120.0" />
+        <TableColumn fx:id="reservasiColumn" text="Reservasi" prefWidth="120.0" />
+        <TableColumn fx:id="pelangganColumn" text="Pelanggan" prefWidth="150.0" />
+        <TableColumn fx:id="kamarColumn" text="Kamar" prefWidth="120.0" />
+        <TableColumn fx:id="totalBayarColumn" text="Total Bayar" prefWidth="130.0" />
+        <TableColumn fx:id="metodeColumn" text="Metode Pembayaran" prefWidth="140.0" />
+        <TableColumn fx:id="tanggalColumn" text="Tanggal" prefWidth="100.0" />
+        <TableColumn fx:id="statusColumn" text="Status" prefWidth="80.0" />
       </columns>
-
       <columnResizePolicy>
         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
       </columnResizePolicy>
     </TableView>
   </center>
 
-  <!-- ================= FORM BOTTOM ================= -->
   <bottom>
-    <VBox spacing="15" BorderPane.alignment="CENTER">
-      <padding>
-        <Insets top="15" />
-      </padding>
+    <VBox spacing="15" BorderPane.alignment="CENTER" styleClass="card">
+      <BorderPane.margin>
+        <Insets top="20" />
+      </BorderPane.margin>
 
-      <Separator />
+      <HBox spacing="30">
+        <!-- INFORMASI RESERVASI -->
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+          <Label text="INFORMASI RESERVASI" styleClass="section-title" />
 
-      <HBox spacing="20">
-
-        <!-- PANEL RESERVASI -->
-        <VBox spacing="12" HBox.hgrow="ALWAYS" styleClass="panel-box">
-          <Label text="INFORMASI RESERVASI" styleClass="panel-title" />
-
-          <GridPane hgap="10" vgap="10">
+          <GridPane hgap="15" vgap="10">
             <columnConstraints>
-              <ColumnConstraints minWidth="120" />
-              <ColumnConstraints hgrow="ALWAYS" />
+              <ColumnConstraints hgrow="NEVER" minWidth="80.0" />
+              <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" />
             </columnConstraints>
 
             <Label text="Reservasi:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-            <ComboBox fx:id="reservasiComboBox" promptText="Pilih Reservasi"
+            <ComboBox fx:id="reservasiComboBox" promptText="Pilih Reservasi" prefWidth="250.0"
               GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
             <Label text="Pelanggan:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
@@ -70,18 +70,18 @@
           </GridPane>
         </VBox>
 
-        <!-- PANEL PEMBAYARAN -->
-        <VBox spacing="12" HBox.hgrow="ALWAYS" styleClass="panel-box">
-          <Label text="DETAIL PEMBAYARAN" styleClass="panel-title" />
+        <!-- DETAIL PEMBAYARAN -->
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+          <Label text="DETAIL PEMBAYARAN" styleClass="section-title" />
 
-          <GridPane hgap="10" vgap="10">
+          <GridPane hgap="15" vgap="10">
             <columnConstraints>
-              <ColumnConstraints minWidth="120" />
-              <ColumnConstraints hgrow="ALWAYS" />
+              <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+              <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" />
             </columnConstraints>
 
             <Label text="ID Transaksi:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-            <TextField fx:id="idTransaksiField" editable="false"
+            <TextField fx:id="idTransaksiField" editable="false" promptText="Auto-generated"
               GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
             <Label text="Subtotal:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
@@ -91,38 +91,34 @@
             <Label fx:id="pajakLabel" text="Rp 0" GridPane.rowIndex="2" GridPane.columnIndex="1" />
 
             <Label text="Diskon:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-            <HBox spacing="5" GridPane.rowIndex="3" GridPane.columnIndex="1">
-              <TextField fx:id="diskonField" text="0" onKeyReleased="#handleDiskonChange" />
-              <Label text="\%" />
-              <Label fx:id="diskonRpLabel" text="(Rp 0)" />
+            <HBox spacing="10" GridPane.rowIndex="3" GridPane.columnIndex="1">
+              <TextField fx:id="diskonField" text="0" prefWidth="60.0" />
+              <Label text="/%" />
+              <Label fx:id="diskonNominalLabel" text="(Rp 0)" />
             </HBox>
 
-            <Separator GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2" />
+            <Label text="Total Bayar:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+            <Label fx:id="totalBayarLabel" text="Rp 0" styleClass="total-label"
+              GridPane.rowIndex="4" GridPane.columnIndex="1" />
 
-            <Label text="Total Bayar:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-            <Label fx:id="totalBayarLabel" text="Rp 0" GridPane.rowIndex="5"
-              GridPane.columnIndex="1" />
-
-            <Label text="Metode:" GridPane.rowIndex="6" GridPane.columnIndex="0" />
-            <ComboBox fx:id="metodeComboBox" promptText="Pilih Metode"
-              GridPane.rowIndex="6" GridPane.columnIndex="1" />
+            <Label text="Metode:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+            <ComboBox fx:id="metodeComboBox" promptText="Pilih Metode" prefWidth="150.0"
+              GridPane.rowIndex="5" GridPane.columnIndex="1" />
           </GridPane>
         </VBox>
-
       </HBox>
 
-      <!-- BUTTONS -->
+      <!-- Buttons & Status -->
       <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button fx:id="bayarButton" text="Bayar Sekarang" styleClass="btn-primary" />
-        <Button fx:id="cetakButton" text="Cetak Struk" styleClass="btn-outline" />
-        <Button fx:id="resetButton" text="Reset" styleClass="btn-danger" />
+        <Button fx:id="bayarButton" text="Bayar Sekarang" styleClass="btn-primary" prefWidth="130" />
+        <Button fx:id="cetakStrukButton" text="Cetak Struk" styleClass="btn-outline" prefWidth="110" />
+        <Button fx:id="resetButton" text="Reset" styleClass="btn-danger" prefWidth="80" />
 
         <Region HBox.hgrow="ALWAYS" />
 
         <Label text="Status:" />
-        <Label fx:id="statusPembayaranLabel" text="Siap untuk pembayaran" />
+        <Label fx:id="statusLabel" text="Siap untuk pembayaran" styleClass="status-label" />
       </HBox>
-
     </VBox>
   </bottom>
 
