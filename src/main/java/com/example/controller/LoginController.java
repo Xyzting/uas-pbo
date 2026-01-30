@@ -1,13 +1,18 @@
 package com.example.controller;
 
+import java.util.List;
+
+import com.example.App;
+import com.example.model.Karyawan;
+import com.example.utils.FileUtil;
+import com.example.utils.SessionManager;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -16,28 +21,23 @@ public class LoginController {
 
     @FXML
     private TextField usernameField;
-
     @FXML
     private PasswordField passwordField;
-
-    @FXML
-    private Label errorLabel;
-
     @FXML
     private Button loginButton;
 
-    @FXML
-    private Hyperlink forgotPasswordLink;
+    private static final String KARYAWAN_FILE = "karyawan.csv";
+    private static final String CSS_PATH = "/css/app.css";
 
     @FXML
     public void initialize() {
-        // Setup event handlers
-        setupEnterKeyLogin();
+        loginButton.setOnAction(e -> handleLogin());
 
-        // Setup hyperlink actions
-        forgotPasswordLink.setOnAction(e -> handleForgotPassword());
+        // Enter key on password field triggers login
+        passwordField.setOnAction(e -> handleLogin());
 
-        System.out.println("LoginController initialized");
+        // Enter key on username field moves to password
+        usernameField.setOnAction(e -> passwordField.requestFocus());
     }
 
     @FXML
@@ -45,74 +45,97 @@ public class LoginController {
         String username = usernameField.getText().trim();
         String password = passwordField.getText();
 
-        // Reset error message
-        hideError();
-
-        // Validasi input
         if (username.isEmpty() || password.isEmpty()) {
-            showError("Username dan password tidak boleh kosong!");
+            showAlert(Alert.AlertType.WARNING, "Input tidak lengkap!",
+                    "Username dan password harus diisi!");
             return;
         }
 
-        // Login logic (ganti dengan logika database Anda)
-        if (validateLogin(username, password)) {
-            // Login berhasil
-            System.out.println("Login berhasil!");
+        List<Karyawan> karyawanList = FileUtil.load(KARYAWAN_FILE, Karyawan::fromCSV);
 
-            // Pindah ke halaman utama
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/main.fxml"));
-                Parent root = loader.load();
+        Karyawan found = null;
+        for (Karyawan k : karyawanList) {
+            if (k.getNama().equalsIgnoreCase(username) || k.getId().equalsIgnoreCase(username)) {
+                found = k;
+                break;
+            }
+        }
 
-                Stage stage = (Stage) loginButton.getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.setTitle("Hotel Management System");
-                stage.centerOnScreen();
-                stage.show();
+        if (found == null) {
+            showAlert(Alert.AlertType.ERROR, "Login Gagal",
+                    "Username tidak ditemukan!");
+            return;
+        }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-                showError("Gagal memuat halaman utama!");
+        if (!found.verifyPassword(password)) {
+            showAlert(Alert.AlertType.ERROR, "Login Gagal",
+                    "Password salah!");
+            return;
+        }
+
+        // Login berhasil - set session
+        SessionManager.getInstance().login(found);
+
+        try {
+            String fxmlPath;
+            if (found.getRole().equals("MANAGER")) {
+                fxmlPath = "AdminView.fxml";
+            } else {
+                fxmlPath = "KasirView.fxml";
             }
 
-        } else {
-            // Login gagal
-            showError("Username atau password salah!");
-            passwordField.clear();
-            passwordField.requestFocus();
+            Parent root = FXMLLoader.load(App.class.getResource(fxmlPath));
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+
+            // Apply CSS
+            try {
+                root.getStylesheets().add(
+                        App.class.getResource(CSS_PATH).toExternalForm()
+                );
+            } catch (Exception cssEx) {
+                // Try alternate path
+                try {
+                    root.getStylesheets().add(
+                            App.class.getResource(CSS_PATH).toExternalForm()
+                    );
+                } catch (Exception e2) {
+                    // ignore
+                }
+            }
+
+            stage.setScene(new Scene(root));
+            stage.setMaximized(true);
+            stage.setTitle("Hotel Management - " + found.getNama());
+
+            showAlert(Alert.AlertType.INFORMATION, "Login Berhasil",
+                    "Selamat datang, " + found.getNama() + "!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error",
+                    "Gagal membuka halaman: " + e.getMessage());
         }
     }
 
-    private boolean validateLogin(String username, String password) {
-        // TODO: Implementasi validasi dengan database
-        // Sementara hardcode untuk testing
-        return username.equals("admin") && password.equals("admin123");
-    }
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
 
-    private void handleForgotPassword() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Lupa Password");
-        alert.setHeaderText("Reset Password");
-        alert.setContentText("Silakan hubungi administrator untuk reset password.");
+        try {
+            alert.getDialogPane().getStylesheets().add(
+                    App.class.getResource(CSS_PATH).toExternalForm()
+            );
+        } catch (Exception e) {
+            try {
+                alert.getDialogPane().getStylesheets().add(
+                        App.class.getResource(CSS_PATH).toExternalForm()
+                );
+            } catch (Exception e2) {
+            }
+        }
+
         alert.showAndWait();
-    }
-
-    private void showError(String message) {
-        errorLabel.setText(message);
-        errorLabel.setVisible(true);
-        errorLabel.setManaged(true);
-    }
-
-    private void hideError() {
-        errorLabel.setText("");
-        errorLabel.setVisible(false);
-        errorLabel.setManaged(false);
-    }
-
-    private void setupEnterKeyLogin() {
-        // Login saat tekan Enter di password field
-        passwordField.setOnAction(e -> handleLogin());
-        usernameField.setOnAction(e -> passwordField.requestFocus());
     }
 }
