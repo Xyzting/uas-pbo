@@ -95,9 +95,6 @@
               <Label text="Password"
                 style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #374151;"
                 HBox.hgrow="ALWAYS" />
-              <Hyperlink fx:id="forgotPasswordLink"
-                text="Lupa Password?"
-                style="-fx-font-size: 12px; -fx-text-fill: #2563eb;" />
             </HBox>
             <PasswordField fx:id="passwordField"
               promptText="Masukkan password"
