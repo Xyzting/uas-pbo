@@ -13,6 +13,8 @@ import com.example.utils.FileUtil;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.print.PrinterJob;
 import javafx.scene.Node;
@@ -82,8 +84,9 @@ public class TransaksiController {
     @FXML
     private Button resetButton;
 
-    // Data
     private ObservableList<Transaksi> transaksiList = FXCollections.observableArrayList();
+    private FilteredList<Transaksi> filteredData;
+    private SortedList<Transaksi> sortedData;
     private static final String TRANSAKSI_FILE = "transaksi.csv";
     private static final String RESERVASI_FILE = "reservasi.csv";
 
@@ -92,7 +95,6 @@ public class TransaksiController {
 
     @FXML
     public void initialize() {
-        // Setup Table Columns
         idTransaksiColumn.setCellValueFactory(new PropertyValueFactory<>("idTransaksi"));
         reservasiColumn.setCellValueFactory(new PropertyValueFactory<>("idReservasi"));
         pelangganColumn.setCellValueFactory(new PropertyValueFactory<>("namaPelanggan"));
@@ -102,17 +104,12 @@ public class TransaksiController {
         tanggalColumn.setCellValueFactory(new PropertyValueFactory<>("tanggalFormatted"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        // Setup ComboBoxes
         setupMetodeComboBox();
         loadReservasiComboBox();
-
-        // Load Data
         loadTransaksiData();
-
-        // Table Selection
+        setupFilteringAndSorting();
         setupTableSelection();
 
-        // Reservasi ComboBox listener
         reservasiComboBox.valueProperty().addListener((obs, old, selected) -> {
             if (selected != null) {
                 fillInfoFromReservasi(selected);
@@ -120,7 +117,6 @@ public class TransaksiController {
             }
         });
 
-        // Diskon listener
         if (diskonField != null) {
             diskonField.textProperty().addListener((obs, old, newVal) -> {
                 if (!newVal.matches("\\d*\\.?\\d*")) {
@@ -130,14 +126,19 @@ public class TransaksiController {
             });
         }
 
-        // Button Actions
         bayarButton.setOnAction(e -> handleBayar());
         cetakStrukButton.setOnAction(e -> handleCetakStruk());
         resetButton.setOnAction(e -> resetForm());
 
-        // Initial state
         bayarButton.setDisable(true);
         cetakStrukButton.setDisable(true);
+    }
+
+    private void setupFilteringAndSorting() {
+        filteredData = new FilteredList<>(transaksiList, p -> true);
+        sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(transaksiTableView.comparatorProperty());
+        transaksiTableView.setItems(sortedData);
     }
 
     private void setupMetodeComboBox() {
@@ -228,13 +229,11 @@ public class TransaksiController {
     }
 
     private void checkExistingTransaction(Reservasi r) {
-        // Cek apakah sudah ada transaksi untuk reservasi ini
         Optional<Transaksi> existing = transaksiList.stream()
                 .filter(t -> t.getIdReservasi().equals(r.getIdReservasi()))
                 .findFirst();
 
         if (existing.isPresent()) {
-            // Sudah ada transaksi - mode view only
             fillFormFromTransaksi(existing.get());
             bayarButton.setDisable(true);
             cetakStrukButton.setDisable(false);
@@ -254,7 +253,6 @@ public class TransaksiController {
     }
 
     private void fillFormFromTransaksi(Transaksi t) {
-        // Set reservasi combo
         reservasiComboBox.getItems().stream()
                 .filter(r -> r.getIdReservasi().equals(t.getIdReservasi()))
                 .findFirst()

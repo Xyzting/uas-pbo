@@ -17,6 +17,8 @@ import com.example.utils.SessionManager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -85,6 +87,9 @@ public class ReservasiController {
 
     // Data
     private ObservableList<Reservasi> reservasiList = FXCollections.observableArrayList();
+
+    private FilteredList<Reservasi> filteredData;
+    private SortedList<Reservasi> sortedData;
     private static final String RESERVASI_FILE = "reservasi.csv";
     private static final String PELANGGAN_FILE = "pelanggan.csv";
     private static final String KAMAR_FILE = "kamar.csv";
@@ -96,14 +101,12 @@ public class ReservasiController {
 
     @FXML
     public void initialize() {
-        // Setup button visibility
         tambahButton.setVisible(true);
         ubahButton.setVisible(false);
         batalkanButton.setVisible(false);
         checkInButton.setVisible(false);
         checkOutButton.setVisible(false);
 
-        // Setup Table Columns
         idReservasiColumn.setCellValueFactory(new PropertyValueFactory<>("idReservasi"));
         pelangganColumn.setCellValueFactory(new PropertyValueFactory<>("namaPelanggan"));
         kamarColumn.setCellValueFactory(new PropertyValueFactory<>("namaKamar"));
@@ -112,21 +115,14 @@ public class ReservasiController {
         durasiColumn.setCellValueFactory(new PropertyValueFactory<>("durasiText"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        // Setup ComboBoxes
         setupStatusComboBox();
         loadPelangganComboBox();
         loadKamarComboBox();
-
-        // Setup Date Pickers
         setupDatePickers();
-
-        // Load Data
         loadReservasiData();
-
-        // Setup Table Selection
+        setupFilteringAndSorting();
         setupTableSelection();
 
-        // Button Actions
         tambahButton.setOnAction(e -> handleTambah());
         ubahButton.setOnAction(e -> handleUbah());
         batalkanButton.setOnAction(e -> handleBatalkan());
@@ -139,17 +135,22 @@ public class ReservasiController {
             pelangganBaruButton.setOnAction(e -> handlePelangganBaru());
         }
 
-        // Auto-calculate durasi dan total harga
         checkInDatePicker.valueProperty().addListener((obs, old, newVal) -> calculateDurasiAndTotal());
         checkOutDatePicker.valueProperty().addListener((obs, old, newVal) -> calculateDurasiAndTotal());
         kamarComboBox.valueProperty().addListener((obs, old, newVal) -> calculateDurasiAndTotal());
+    }
+
+    private void setupFilteringAndSorting() {
+        filteredData = new FilteredList<>(reservasiList, p -> true);
+        sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(reservasiTableView.comparatorProperty());
+        reservasiTableView.setItems(sortedData);
     }
 
     private void setupStatusComboBox() {
         statusComboBox.getItems().addAll("BOOKING", "CHECK_IN", "CHECK_OUT", "BATAL");
         statusComboBox.setValue("BOOKING");
 
-        // Custom cell factory - disable BATAL dan CHECK_OUT
         statusComboBox.setCellFactory(lv -> new ListCell<String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -160,7 +161,6 @@ public class ReservasiController {
                     setStyle("");
                 } else {
                     setText(item);
-                    // Disable BATAL dan CHECK_OUT
                     if ("BATAL".equals(item) || "CHECK_OUT".equals(item)) {
                         setDisable(true);
                         setStyle("-fx-opacity: 0.5; -fx-text-fill: #9ca3af;");
@@ -172,7 +172,6 @@ public class ReservasiController {
             }
         });
 
-        // Button cell (yang ditampilkan saat combo tertutup)
         statusComboBox.setButtonCell(new ListCell<String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -450,6 +449,9 @@ public class ReservasiController {
         }
 
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.getDialogPane().getStylesheets().add(
+                App.class.getResource(CSS_PATH).toExternalForm()
+        );
         confirm.setTitle("Konfirmasi Pembatalan");
         confirm.setHeaderText("Batalkan reservasi ini?");
         confirm.setContentText("Reservasi: " + selected.getIdReservasi()
@@ -500,7 +502,6 @@ public class ReservasiController {
         dialog.setTitle("Pembayaran Check-in");
         dialog.setHeaderText("Proses pembayaran untuk " + reservasi.getNamaPelanggan());
 
-        // Apply CSS
         dialog.getDialogPane().getStylesheets().add(
                 App.class.getResource(CSS_PATH).toExternalForm()
         );
@@ -601,7 +602,6 @@ public class ReservasiController {
         dialog.getDialogPane().setContent(grid);
         dialog.getDialogPane().setPrefWidth(400);
 
-        // Enable/disable bayar button
         Node bayarButton = dialog.getDialogPane().lookupButton(bayarButtonType);
 
         dialog.setResultConverter(dialogButton -> {
@@ -640,7 +640,6 @@ public class ReservasiController {
         return dialog.showAndWait();
     }
 
-    // Helper method untuk label
     private Label createLabel(String text) {
         Label label = new Label(text);
         label.setStyle("-fx-text-fill: #6b7280; -fx-font-weight: normal;");
@@ -653,7 +652,6 @@ public class ReservasiController {
         return label;
     }
 
-    // ==================== CHECK-OUT ====================
     private void handleCheckOut() {
         Reservasi selected = reservasiTableView.getSelectionModel().getSelectedItem();
         if (selected == null) {
@@ -661,6 +659,9 @@ public class ReservasiController {
         }
 
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.getDialogPane().getStylesheets().add(
+                App.class.getResource(CSS_PATH).toExternalForm()
+        );
         confirm.setTitle("Konfirmasi Check-out");
         confirm.setHeaderText("Proses check-out untuk:");
         confirm.setContentText("Pelanggan: " + selected.getNamaPelanggan()
@@ -696,7 +697,6 @@ public class ReservasiController {
         });
     }
 
-    // ==================== HELPER METHODS ====================
     private void updateKamarStatus(String kamarId, String newStatus) {
         List<Kamar> kamarList = FileUtil.load(KAMAR_FILE, Kamar::fromCSV);
 
@@ -761,7 +761,6 @@ public class ReservasiController {
         alert.setHeaderText(null);
         alert.setContentText(message);
 
-        // Apply CSS
         alert.getDialogPane().getStylesheets().add(
                 App.class.getResource(CSS_PATH).toExternalForm()
         );

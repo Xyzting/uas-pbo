@@ -13,7 +13,17 @@
     <Insets top="15" right="15" bottom="15" left="15" />
   </padding>
 
-  <!-- TABEL RESERVASI -->
+  <top>
+    <VBox spacing="10" BorderPane.alignment="CENTER">
+      <padding>
+        <Insets bottom="10" />
+      </padding>
+
+      <Label text="Reservasi Hotel" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+      <Separator />
+    </VBox>
+  </top>
+
   <center>
     <TableView fx:id="reservasiTableView" BorderPane.alignment="CENTER">
       <columns>
@@ -28,10 +38,13 @@
       <columnResizePolicy>
         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
       </columnResizePolicy>
+      <placeholder>
+        <Label text="Tidak ada data reservasi. Klik 'Tambah Reservasi' untuk membuat booking baru."
+          style="-fx-text-fill: gray;" />
+      </placeholder>
     </TableView>
   </center>
 
-  <!-- FORM + BUTTON AREA -->
   <bottom>
     <VBox spacing="15" BorderPane.alignment="CENTER">
 
@@ -41,7 +54,6 @@
 
       <Separator />
 
-      <!-- FORM INPUT -->
       <GridPane hgap="10" vgap="12" alignment="CENTER_LEFT">
 
         <columnConstraints>
@@ -51,12 +63,11 @@
           <ColumnConstraints minWidth="250" prefWidth="350" hgrow="SOMETIMES" />
         </columnConstraints>
 
-        <!-- ROW 1 -->
         <Label text="ID Reservasi:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-        <TextField fx:id="idReservasiField" editable="false" GridPane.rowIndex="0"
-          GridPane.columnIndex="1" />
+        <TextField fx:id="idReservasiField" editable="false"
+          style="-fx-background-color: #f0f0f0;"
+          GridPane.rowIndex="0" GridPane.columnIndex="1" />
 
-        <!-- ROW 1 - Pelanggan Section -->
         <Label text="Pelanggan:" GridPane.rowIndex="0" GridPane.columnIndex="2" />
         <HBox spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="3">
           <ComboBox fx:id="pelangganComboBox" promptText="Pilih Pelanggan"
@@ -65,47 +76,73 @@
             styleClass="btn-success" />
         </HBox>
 
-        <!-- ROW 2 -->
         <Label text="Kamar:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
         <HBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="1">
-          <ComboBox fx:id="kamarComboBox" promptText="Pilih Kamar" />
+          <ComboBox fx:id="kamarComboBox" promptText="Pilih Kamar"
+            HBox.hgrow="ALWAYS" />
           <Button fx:id="refreshKamarButton" text="⟳" styleClass="btn-primary" />
         </HBox>
 
         <Label text="Status:" GridPane.rowIndex="1" GridPane.columnIndex="2" />
-        <ComboBox fx:id="statusComboBox" promptText="Pilih Status" GridPane.rowIndex="1"
-          GridPane.columnIndex="3" />
+        <ComboBox fx:id="statusComboBox" promptText="Pilih Status"
+          editable="false"
+          GridPane.rowIndex="1" GridPane.columnIndex="3" />
 
-        <!-- ROW 3 -->
         <Label text="Check-in:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-        <DatePicker fx:id="checkInDatePicker" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+        <DatePicker fx:id="checkInDatePicker"
+          GridPane.rowIndex="2" GridPane.columnIndex="1"
+          prefWidth="350" />
 
         <Label text="Check-out:" GridPane.rowIndex="2" GridPane.columnIndex="2" />
-        <DatePicker fx:id="checkOutDatePicker" GridPane.rowIndex="2" GridPane.columnIndex="3" />
+        <DatePicker fx:id="checkOutDatePicker"
+          GridPane.rowIndex="2" GridPane.columnIndex="3"
+          prefWidth="350" />
 
-        <!-- ROW 4 -->
         <Label text="Durasi:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
-        <Label fx:id="durasiLabel" text="- hari" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+        <Label fx:id="durasiLabel" text="- hari"
+          style="-fx-font-size: 14px; -fx-font-weight: bold;"
+          GridPane.rowIndex="3" GridPane.columnIndex="1" />
 
         <Label text="Total Harga:" GridPane.rowIndex="3" GridPane.columnIndex="2" />
-        <Label fx:id="totalHargaLabel" styleClass="price-label" text="Rp 0" GridPane.rowIndex="3"
-          GridPane.columnIndex="3" />
+        <Label fx:id="totalHargaLabel" text="Rp 0"
+          style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"
+          GridPane.rowIndex="3" GridPane.columnIndex="3" />
 
       </GridPane>
 
-      <!-- BUTTONS -->
       <HBox spacing="10" alignment="CENTER_LEFT">
 
-        <Button fx:id="tambahButton" text="Tambah Reservasi" styleClass="btn-primary" />
-        <Button fx:id="ubahButton" text="Ubah" styleClass="btn-outline" />
-        <Button fx:id="batalkanButton" text="Batalkan" styleClass="btn-danger" />
-        <Button fx:id="resetButton" text="Reset" styleClass="btn-muted" />
+        <Button fx:id="tambahButton" text="Tambah Reservasi"
+          styleClass="btn-primary"
+          style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" />
+
+        <Button fx:id="ubahButton" text="Ubah"
+          styleClass="btn-outline"
+          style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+
+        <Button fx:id="batalkanButton" text="Batalkan"
+          styleClass="btn-danger"
+          style="-fx-background-color: #F44336; -fx-text-fill: white;" />
+
+        <Button fx:id="resetButton" text="Reset"
+          styleClass="btn-muted"
+          style="-fx-background-color: #9E9E9E; -fx-text-fill: white;" />
 
         <Region HBox.hgrow="ALWAYS" />
 
-        <Button fx:id="checkInButton" text="Check-in" styleClass="btn-success" />
-        <Button fx:id="checkOutButton" text="Check-out" styleClass="btn-success" />
+        <Button fx:id="checkInButton" text="✓ Check-in"
+          styleClass="btn-success"
+        />
 
+        <Button fx:id="checkOutButton" text="✓ Check-out"
+          styleClass="btn-success"
+        />
+
+      </HBox>
+
+      <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10 0 0 0;">
+        <Label text="Tips: Klik header kolom untuk sorting."
+          style="-fx-text-fill: #757575; -fx-font-size: 11px;" />
       </HBox>
 
     </VBox>
